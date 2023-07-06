@@ -1,112 +1,76 @@
-# React homework template
+# Parcel template
 
-Acest proiect a fost creat cu ajutorul
-[Create React App](https://github.com/facebook/create-react-app). Pentru prezentări
-și configurarea de funcții suplimentare
-[consultați documentația](https://facebook.github.io/create-react-app/docs/getting-started).
+Acest proiect a fost creat cu ajutorul Parcel. Pentru familiarizare și configurarea funcțiilor suplimentare [consultați documentația](https://parceljs.org/).
 
-## Crearea unui repository dintr-un șablon
+## Pregătirea noului proiect
 
-Utilizați acest repository al organizației GoIT ca model pentru crearea unui repository
-pentru proiectul dumneavoastră. Pentru a face acest lucru, faceți clic pe "Use this template" și selectați opțiunea
-"Create a new repository", așa cum se arată în imagine.
+1. Asigură-te că pe PC este instalată versiunea LTS Node.js.
+   [Descarcă și instalează](https://nodejs.org/en/) dacă este necesar.
+2. Clonează acest depozit.
+3. Schimbă numele folderului din `parcel-project-template` în numele proiectului tău.
+4. Creează un depozit nou și gol pe GitHub.
+5. Deschide proiectul în VSCode, pornește terminalul și conectează proiectul cu depozitul GitHub
+   [conform instrucțiunilor](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#changing-a-remote-repositorys-url).
+6. Setează dependențele proiectului în terminal cu ajutorul comenzii `npm install` .
+7. Pornește modul dezvoltator prin rularea comenzii `npm start`.
+8. Accesează  în browser pagina  [http://localhost:1234](http://localhost:1234).
+   Această pagină se va reîncărca automat după salvarea modificărilor efectuate în fișiere proiectului.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## Fișiere și foldere
 
-Următorul pas va deschide pagina de creare a unui nou repository. Completați câmpul
-pentru numele acestuia, asigurați-vă că repository-ul este public, apoi faceți clic pe
-«Create repository from template».
+- Toate fișierele de stil trebuie să se afle în folderul `src/sass` să fie importate în fișiere de stil ale paginilor. De exemplu, pentru `index.html` fișierul de stiluri se numește
+  `index.scss`.
+- Adaugă imaginile în folderul `src/images`. Constructorul le va optimiza, dar numai atunci când va fi implementată versiunea de producție a proiectului. Toate acestea se realizează în cloud pentru a nu împovăra calculatorul, deoarece pe mașinile slabe aceasta poate dura mult timp. 
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## Implementare
+Pentru a configura implimentarea proiectului, trebuie de efectuat câțiva pași suplimentari pentru configurarea depozitului. Accesează fila `Settings` și în subsecțiunea `Actions` selectează `General`
 
-Odată ce repository-ul a fost creat, trebuie să accesați setările
-ale repository-ului creat în fila Settings > Actions > General, așa cum urmează
-prezentată în imagine.
+![GitHub actions settings](./assets/actions-config-step-1.png)
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+Derulează pagina până la ultima secțiune, asigurându-te că opțiunile sunt selectate ca în imaginea următoare și apasă `Save`. Fără aceste setări, constructorul nu va avea drepturi suficiente pentru a automatiza procesul de implementare.
 
-După ce ați derulat până la sfârșitul paginii, în secțiunea "Workflow permissions", selectați
-Read and write permissions" (Permisiuni de citire și scriere) și bifați caseta de selectare. Acest lucru
-este necesar pentru a automatiza procesul de lansare a proiectului.
+![GitHub actions settings](./assets/actions-config-step-2.png)
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+Versiunea de producție a proiectului va fi construită automat și implementată pe GitHub. Pages, în ramura `gh-pages`, de fiecare dată când ramura `main` va fi actualizată. De exemplu,
+după un push direct sau după o cerere acceptată pool-request. Pentru aceasta, în fișierul
+`package.json` trebuie de editat câmpul `homepage` și scriptul `build`, înlocuind
+`your_username` și `your_repo_name` pe cele proprii, și trimite modificările la GitHub.
 
-Aveți acum un repository personal de proiecte, cu o structură de fișiere și dosare.
-Lucrați apoi cu acesta așa cum ați face-o cu orice alt repository personal,
-clonați-l pe computerul dumneavoastră, scrieți codul, confirmați-l și încărcați-l pe
-GitHub.
+```json
+"homepage": "https://your_username.github.io/your_repo_name/",
+"scripts": {
+  "build": "parcel build src/*.html --public-url /your_repo_name/"
+},
+```
 
-## Pregătirea pentru muncă
-
-1. Asigurați-vă că aveți versiunea LTS a Node.js instalată pe computerul dumneavoastră.
-   [Descărcați-o și instalați-o](https://nodejs.org/en/) dacă este necesar.
-2. Instalați dependențele de bază ale proiectului cu ajutorul comenzii npm install.
-3. Porniți modul de dezvoltare prin rularea comenzii npm start.
-4. Accesați [http://localhost:3000](http://localhost:3000) în browserul dumneavoastră.
-   Această pagină se va reîncărca automat după salvarea modificărilor aduse la
-   fișiere de proiect.
-
-## Deploy
-
-Versiunea de producție a proiectului va fi automat legată, construită și
-distribuită pe GitHub Pages, în ramura gh-pages, de fiecare dată când se va lansa proiectul.
-ramura main este actualizată. De exemplu, după un push direct sau o cerere de pull-request acceptată. Pentru a face acest lucru
-În fișierul package.json, editați câmpul homepage înlocuind
-your_username și your_repo_name cu numele dvs. propriu și trimiteți modificările la GitHub.
-
-json
-"homepage": "https://your_username.github.io/your_repo_name/"
-
-
-În continuare, mergeți la setările repository-ului GitHub (`Settings` > `Pages`) și
-setați să distribuiți versiunea de producție a fișierelor în folderul /root al ramurii gh-pages, dacă
-acest lucru nu a fost făcut în mod automat.
+Apoi, accesează setările depozitului GitHub (`Settings` > `Pages`) și setează distribuția versiunii de producție a fișierelor din folderul `/root` ramurii `gh-pages`, dacă acest lucru nu a fost făcut automat.
 
 ![GitHub Pages settings](./assets/repo-settings.png)
 
-### Deployment status
+### Starea implementării
 
-Starea de implementare a ultimei comenzi este indicată de o pictogramă în dreptul ID-ului său.
+Starea implimentării ultimului commit este afișată printr-o pictogramă lângă ID-ul acestuia.
 
-- Galben - Proiectul este în curs de construire și de desfășurare.
-- Verde - Implementarea s-a finalizat cu succes.
-- Roșu - A apărut o eroare în timpul legării, construirii sau desfășurării.
+- **Galbenă** - proiectul se asamblează și se implementează.
+- **Verde** - proiectul a fost implementat cu succes.
+- **Roșu** - în timpul listării, asamblării sau implementării a apărut o eroare.
 
-Informații mai detaliate privind starea pot fi vizualizate făcând clic pe pictogramă, iar în fereastra
-clic pe link-ul Details din fereastra derulantă.
+Mai multe informații despre stare pot fi obținute dând clic pe pictogramă și în fereastra derulantă - click pe linkul  `Details`.
 
-![Deployment status](./assets/deploy-status.png)
+![Deployment status](./assets/status.png)
 
-### Pagina live
+### Pagină live
 
-După un timp, de obicei câteva minute, pagina live poate fi vizualizată.
-la adresa specificată în proprietatea homepage editată. De exemplu, iată
-link către versiunea live pentru acest depozit
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+După un timp, de obicei câteva minute, pagina live poate fi vizualizată la adresa specificată în proprietatea editată `homepage`. De exemplu, iată linkul către versiunea live pentru acest depozit
+[https://goitacademy.github.io/parcel-project-template](https://goitacademy.github.io/parcel-project-template).
 
-Dacă se deschide o pagină goală, asigurați-vă că nu există erori în fila Console.
-asociate cu căi de acces incorecte la fișierele CSS și JS ale proiectului (**404**). Cel mai probabil
-Probabil că aveți o valoare greșită pentru proprietatea homepage din fișierul package.json.
-
-### Rutarea
-
-Dacă aplicația utilizează biblioteca react-router-dom pentru rutare,
-Trebuie să configurați suplimentar componenta <BrowserRouter>` prin trecerea în prop
-basename numele exact al repository-ului dumneavoastră. O bară oblică la începutul liniei este obligatorie.
-
-jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-
+Dacă se deschide o pagină goală, asigură-te că fila `Console` nu conține erori legate de căile incorecte ale fișierelor proCSS și JS din proiect (**404**). Probabil că este greșită valoarea proprietății `homepage` sau scriptului `build` în fișierul `package.json`.
 
 ## Cum funcționează
 
 ![How it works](./assets/how-it-works.png)
 
-1. După fiecare "push" către ramura main a depozitului GitHub, se va crea un fișier special
-   script (GitHub Action) din fișierul .github/workflows/deploy.yml.
-2. Toate fișierele din repository sunt copiate pe server, unde proiectul este inițializat și construit înainte de a fi implementat.
-3. Dacă toți pașii sunt reușiți, versiunea de producție asamblată a fișierelor proiectului
-   este trimisă la ramura gh-pages. În caz contrar, jurnalul de execuție al scriptului
-   scriptului va indica care este problema.
+1. După fiecare push în ramura `main` depozitului GitHub, este rulat un script special (GitHub Action) din fișierul `.github/workflows/deploy.yml`.
+2. Vor fi copiate toate fișierele din depozitul de cod pe server, unde proiectul va fi inițializat și va trece prin procesul de construcție înainte de implementare
+3. Dacă toți pașii sunt executați cu succes, versiunea de producție asamblată a fișierelor proiectului este trimisă la ramura `gh-pages`. În caz contrar, în jurnalul de execuție al scriptului va fi indicată problema.
+
